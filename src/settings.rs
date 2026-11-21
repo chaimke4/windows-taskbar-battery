@@ -109,6 +109,15 @@ pub fn ensure_autostart() {
     write_run_entry(true);
 }
 
+/// Whether the first-run notification has been shown on this PC (for this user).
+pub fn welcomed() -> bool {
+    read_dword(APP_KEY, "Welcomed") == Some(1)
+}
+
+pub fn set_welcomed() {
+    write_dword(APP_KEY, "Welcomed", 1);
+}
+
 pub fn alerts_enabled() -> bool {
     read_dword(APP_KEY, "LowBatteryAlerts") != Some(0)
 }
